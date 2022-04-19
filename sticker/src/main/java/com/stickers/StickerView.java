@@ -1,5 +1,6 @@
 package com.stickers;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,6 +25,10 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
+import com.airbnb.lottie.LottieComposition;
+import com.airbnb.lottie.LottieCompositionFactory;
+import com.airbnb.lottie.LottieDrawable;
+import com.airbnb.lottie.LottieResult;
 import com.cunoraz.gifview.library.GifView;
 
 import java.lang.annotation.Retention;
@@ -172,7 +177,6 @@ public class StickerView extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         drawStickers(canvas);
-        invalidate();
     }
 
     protected void drawStickers(Canvas canvas) {
