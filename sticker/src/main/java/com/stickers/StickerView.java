@@ -13,7 +13,9 @@ import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.annotation.IntDef;
@@ -21,6 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
+
+import com.cunoraz.gifview.library.GifView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -126,6 +130,11 @@ public class StickerView extends FrameLayout {
                 a.recycle();
             }
         }
+        GifView gifView = new GifView(context);
+        gifView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        gifView.setGifResource(R.drawable.gift_demo);
+        gifView.play();
+        addView(gifView);
     }
 
     public void configDefaultIcons() {
@@ -163,6 +172,7 @@ public class StickerView extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         drawStickers(canvas);
+        invalidate();
     }
 
     protected void drawStickers(Canvas canvas) {
@@ -698,7 +708,7 @@ public class StickerView extends FrameLayout {
         } else {
             offsetX /= 2f;
         }
-        sticker.getMatrix().postTranslate(offsetX , offsetY );
+        sticker.getMatrix().postTranslate(offsetX, offsetY);
         Log.e("PostTranslate ", "offsetX - " + offsetX + "- offsetY - " + offsetY);
     }
 

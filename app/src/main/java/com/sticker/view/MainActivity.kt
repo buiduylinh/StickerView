@@ -13,13 +13,17 @@ import androidx.core.view.drawToBitmap
 import com.sticker.view.databinding.ActivityMainBinding
 import com.sticker.view.dialog.TextDialog
 import com.stickers.DrawableSticker
+import com.stickers.GifDrawableSticker
 import com.stickers.TextSticker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import pl.droidsonroids.gif.GifDrawable
+import pl.droidsonroids.gif.MultiCallback
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -136,9 +140,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun addLogo(resId: Int) {
-        val bitmap = BitmapFactory.decodeResource(resources, resId)
-        val drawable: Drawable = BitmapDrawable(resources, bitmap)
-        binding.stickerView.addSticker(DrawableSticker(drawable))
+        //resource (drawable or raw)
+        val gifFromResource = GifDrawable(resources, R.drawable.gift_demo)
+        binding.stickerView.addSticker(GifDrawableSticker(gifFromResource))
         binding.stickerView.invalidate()
     }
 
